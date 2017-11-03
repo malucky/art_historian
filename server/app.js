@@ -1,8 +1,9 @@
 var express = require('express'); //runs on node,
 var path = require('path')
 var app = express();
-var Cats = require('./models')
+var card = require('./models')
 var bodyParser = require('body-parser'); //from node_modules
+// var mongoose = require('./connect.js')
 
 app.use(bodyParser.json()) //node.js parsing middleware. .json only parses json
 
@@ -21,26 +22,19 @@ app.use(bodyParser.json()) //node.js parsing middleware. .json only parses json
 app.use(express.static(path.resolve('./public')))
 
 ///////////////////////////////////////////
-//should be on the frontend using angular
-$http.get('/cats').then(response){
-  console.log(response.body) /// all of your cats [{cat: 1}, {cat: 2}]
-}
-var postCat = function(){
-  $http.post('/cats', {kitten: {name: $scope.cat.name, type: $scope.cat.type }}).then(response){
-    console.log(response.body) // here is the cat you created
-  }
-}
 
-
-////////////////////////////////////////////
+///////////////////////////////////////////
 app.get('/cats', function(req, res){
-  cats = Cats.selectAll()
+  // cats = Cats.selectAll()
+  cats = 'moo'
   res.send(cats)
 })
 
-app.post('/cats', function(req, res){
-  Cats.insert(req.body.kitten)
-  res.send('here is the cat you created', req.body.cat.toString())
+app.post('/cards', function(req, res){
+  card.insert(req.body)
+  // res.send('here is the cat you created', req.body.cat.toString())
+  console.log(req.body)
+  res.send('here are some cats')
 })
 
 app.listen(3000, function(){ //express assumes localhost
