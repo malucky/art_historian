@@ -1,11 +1,11 @@
 {
-  "name": "art_flash",
+  "name": "art_historian",
   "version": "1.0.0",
   "description": "create image-based flash cards",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/app.js" 
+    "start": "nodemon server/app.js"
   },
   "author": "christine ma",
   "license": "ISC",

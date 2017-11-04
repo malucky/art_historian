@@ -14,7 +14,6 @@ var cardSchema = new Schema({ //define how mongoose will write data to database;
     image : String
 },{collection: 'cardSchemas'})//adding this extra part overwrites how the collection is named as Cards*/);
 
-
 //here we create an actual model of the layout above, which we can later use to instantiate and write data to the database
 var Card = mongoose.model('Card', cardSchema); //pass in name of this model, and the schema which should be used as the blueprint/template of the model
 //mongoose creates and stores the instantiated data above in cards (plural)

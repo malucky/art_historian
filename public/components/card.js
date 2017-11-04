@@ -14,6 +14,15 @@ angular.module('ArtHistorian')
   template:
           `<div ng-click="$ctrl.toggleCardFlip()">
               <img ng-src="{{$ctrl.card.image}}"/>
-              <span ng-if="$ctrl.cardFlip">{{$ctrl.card.artist}}</span>
-          </div>`
+              <span ng-if="$ctrl.cardFlip">
+              <br>
+              <em>{{$ctrl.card.title}}</em><br>
+              by {{$ctrl.card.artist}}<br>
+              created{{$ctrl.card.date}}<br>
+              {{$ctrl.card.material}}<br>
+              {{$ctrl.card.period}}<br>
+              </span>
+          </div>
+          <button>delete</button>
+          `
 })

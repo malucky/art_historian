@@ -8,7 +8,7 @@ angular.module('ArtHistorian', [])
         method: 'POST',
         url : '/cards',
         data: this.newCard
-      }).then(function(response){/*console.log(response.data)*/})
+      }).then(function(response){})
       console.log('newCard',this.newCard)
     }
   },
