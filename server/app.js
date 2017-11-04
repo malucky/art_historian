@@ -2,10 +2,8 @@ var express = require('express');
 var path = require('path')
 var app = express();
 var card = require('./models')
-// var db = require()
 var bodyParser = require('body-parser'); //from node_modules
-// var mongoose = require('./connect.js')
-var mongoose = require('./models.js').Card
+var Card = require('./models.js')
 
 app.use(bodyParser.json()) //node.js parsing middleware. only parses json
 
@@ -27,13 +25,14 @@ app.use(express.static(path.resolve('./public'))) //? how does it know when to s
 
 //home page -- list of all cards by name of work
 app.get('/', function(req, res){
-  Card.find() //nothing passed into find means select all from mongodb Cards model
-  res.status(200).send()
+  var allCards = Card.find() //nothing passed into find means select all from mongodb Cards model
+  console.log(allCards)
+  res.status(200).send(allCards)
 })
 
 //adding flash cards
 app.post('/cards', function(req, res, next){
-  console.log(req.body.title)
+  console.log(req.body)
   var item = {
     title:req.body.title,
     artist:req.body.artist,
@@ -42,9 +41,9 @@ app.post('/cards', function(req, res, next){
     material:req.body.material,
     image:req.body.image
   }
-  console.log(item)
-  // var data = new Card(item);
-  // data.save();
+  console.log('this should be mongoose', Card);
+  var newCard = new Card(item);
+  newCard.save();
   res.redirect('/');
 })
 

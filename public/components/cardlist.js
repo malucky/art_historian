@@ -1,15 +1,19 @@
-var mongoose = require('./connect.js') //require mongoose database created in connect.js
+var Card = require('./models.js')
 
-angular.module('Art_Historian')
+angular.module('ArtHistorian')
+
 .component('cardList',{
-  controller: function($http){
+  controller:
+  this.handleSubmit = function($http){
     $http({
-      method: 'POST',
+      method: 'GET',
       url: '/',
-      data: mongoose.findOne() //select stuff out of mongoose db
-    }).then(function generateRandomCard(response){
-      //
-    })
+      data: mongoose.findOne() //select everything
+    }).then(function(response){})
+    console.log('run')
   },
-  template: <card-list></card-list>
+  template: `<card-list ng-repeat="">
+            </card-list>
+            <button ng-click="$ctrl.handleSubmit()">all cards</button>`
+  bindings: 'handler' : '<'
 })

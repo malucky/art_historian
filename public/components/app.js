@@ -13,14 +13,15 @@ angular.module('ArtHistorian', [])
     }
   },
   template: `<div>
-              title : <input type="text" ng-model="$ctrl.newCard.name"><br>
               artist: <input type="text" ng-model="$ctrl.newCard.artist"><br>
-              period: <input type="text" ng-model="$ctrl.newCard.period"><br>
               date: <input type="text" ng-model="$ctrl.newCard.date"><br>
-              material: <input type="text" ng-model="$ctrl.newCard.material"><br>
               image : <input type="text" ng-model="$ctrl.newCard.image"><br>
+              material: <input type="text" ng-model="$ctrl.newCard.material"><br>
+              title : <input type="text" ng-model="$ctrl.newCard.title"><br>
+              period: <input type="text" ng-model="$ctrl.newCard.period"><br>
               <button ng-click="$ctrl.handleSubmit()">submit</button>
-
-              <pre>{{$ctrl.newCard}}</pre>
-            </div>`
+            </div>
+            <button>see all</button>
+            <card-list></card-list>
+            `
 })

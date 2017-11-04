@@ -6,7 +6,7 @@ var Schema = mongoose.Schema,
 //here we define the layout
 var cardSchema = new Schema({ //define how mongoose will write data to database;
     id    : ObjectId,
-    title  : String, //{type: String, required: true}, //can also add validation / restrictions
+    title  : {type: String, required: true}, //can also add validation / restrictions
     artist: String,
     period: String,
     date  : String,
@@ -19,4 +19,4 @@ var cardSchema = new Schema({ //define how mongoose will write data to database;
 var Card = mongoose.model('Card', cardSchema); //pass in name of this model, and the schema which should be used as the blueprint/template of the model
 //mongoose creates and stores the instantiated data above in cards (plural)
 
-module.exports = Card
+module.exports = Card;
