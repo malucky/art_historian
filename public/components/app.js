@@ -1,5 +1,5 @@
 angular.module('ArtHistorian', [])
-.component('app',{
+.component('cardForm',{
   controller: function($http){
     //this needs to retrieve data from db and assign it to a variable to pass down into template
     this.newCard = {};
@@ -21,7 +21,5 @@ angular.module('ArtHistorian', [])
               period: <input type="text" ng-model="$ctrl.newCard.period"><br>
               <button ng-click="$ctrl.handleSubmit()">submit</button>
             </div>
-            <button>see all</button>
-            <card-list></card-list>
             `
 })

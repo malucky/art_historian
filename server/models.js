@@ -12,7 +12,7 @@ var cardSchema = new Schema({ //define how mongoose will write data to database;
     date  : String,
     material: String,
     image : String
-}/*{collection: 'Cards'}adding this extra part overwrites how the collection is named as Cards*/);
+},{collection: 'cardSchemas'})//adding this extra part overwrites how the collection is named as Cards*/);
 
 
 //here we create an actual model of the layout above, which we can later use to instantiate and write data to the database

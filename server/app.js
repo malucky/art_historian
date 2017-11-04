@@ -1,37 +1,32 @@
 var express = require('express');
 var path = require('path')
 var app = express();
-var card = require('./models')
 var bodyParser = require('body-parser'); //from node_modules
 var Card = require('./models.js')
+var mongoose = require('./connect.js')
+
+var logger = (req, res, next) => {
+  console.log(`received ${req.method} request at ${req.originalUrl}`);
+  next();
+}
 
 app.use(bodyParser.json()) //node.js parsing middleware. only parses json
+app.use(logger);
 
-// var bodyParser = function(req, res, next){
-//   var string = ''
-//   req.on('data', function(stuff){
-//     string += stuff
-//   })
-//   req.on('end', function(){
-//     req.body = string
-//     next()
-//   })
-// }
-
-
-app.use(express.static(path.resolve('./public'))) //? how does it know when to send?
+app.use(express.static(path.resolve('./public')))
 
 ///////////////////////////////////////////
 
 //home page -- list of all cards by name of work
-app.get('/', function(req, res){
-  var allCards = Card.find() //nothing passed into find means select all from mongodb Cards model
-  console.log(allCards)
-  res.status(200).send(allCards)
+app.get('/cards', function(req, res){
+  var allCards = Card.find({})
+  .then(function(data){
+    res.send(data)
+  }) //nothing passed into find means select all from mongodb Cards model
 })
 
 //adding flash cards
-app.post('/cards', function(req, res, next){
+app.post('/cards', function(req, res){
   console.log(req.body)
   var item = {
     title:req.body.title,
@@ -41,17 +36,12 @@ app.post('/cards', function(req, res, next){
     material:req.body.material,
     image:req.body.image
   }
-  console.log('this should be mongoose', Card);
   var newCard = new Card(item);
+  console.log('this should be mongoose', newCard);
   newCard.save();
-  res.redirect('/');
+  res.sendStatus(201);
 })
 
-//testing page
-app.get('/test', function(req, res, next){
-  console.log(req.body.image)
-  res.send(req.body)
-})
 
 app.listen(3000, function(){ //express assumes localhost
   console.log('listening on port 3000')

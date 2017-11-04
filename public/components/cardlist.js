@@ -1,19 +1,23 @@
-var Card = require('./models.js')
-
 angular.module('ArtHistorian')
-
 .component('cardList',{
-  controller:
-  this.handleSubmit = function($http){
-    $http({
-      method: 'GET',
-      url: '/',
-      data: mongoose.findOne() //select everything
-    }).then(function(response){})
-    console.log('run')
+  controller: function($http){
+    this.content = [];
+    this.viewCards = function(){
+      $http({
+        method: 'GET',
+        url: '/cards',
+      }).then((response) => {
+        this.content = response.data;
+        console.log('run')
+        console.log(response)
+      })
+    }
+    this.viewCards()
   },
-  template: `<card-list ng-repeat="">
-            </card-list>
-            <button ng-click="$ctrl.handleSubmit()">all cards</button>`
-  bindings: 'handler' : '<'
+  template: `
+            <div>
+            <button ng-click="$ctrl.viewCards()">see all</button>
+                <card ng-repeat="card in $ctrl.content" card="card"/>
+            </div>
+            `
 })
