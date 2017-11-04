@@ -23,7 +23,6 @@ app.get('/cards', function(req, res){
 })
 
 app.post('/cards', function(req, res){
-  console.log(req.body)
   var item = {
     title:req.body.title,
     artist:req.body.artist,
@@ -36,6 +35,11 @@ app.post('/cards', function(req, res){
   console.log('this should be mongoose', newCard);
   newCard.save();
   res.sendStatus(201);
+})
+
+app.delete('/cards', function(req, res){
+  Card.findByIdAndRemove(req.body.id);
+  res.redirect('/')
 })
 
 app.listen(3000, function(){ //express assumes localhost

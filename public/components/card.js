@@ -1,9 +1,23 @@
 angular.module('ArtHistorian')
-.controller('cardFlip', function(){
+.controller('cardFlip', function($http){
   this.cardFlip = false;
   this.toggleCardFlip = () => {
     this.cardFlip = !this.cardFlip;
   };
+  this.deleteCard = function(){
+    $http:({
+      method: 'DELETE',
+      url: '/cards',
+    }).then(function(response){})
+  }
+  // this.handleSubmit = function(){
+  //   $http({
+  //     method: 'POST',
+  //     url : '/cards',
+  //     data: this.newCard
+  //   }).then(function(response){})
+  //   console.log('newCard',this.newCard)
+  // }
 })
 .component('card', {
   bindings:{
@@ -23,6 +37,6 @@ angular.module('ArtHistorian')
               {{$ctrl.card.period}}<br>
               </span>
           </div>
-          <button>delete</button>
+          <button ng-click="$ctrl.deleteCard()">delete</button>
           `
 })
