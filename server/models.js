@@ -4,6 +4,7 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 //here we define the layout
+// a schema is almost like a blueprint for what this thing in the database looks like
 var cardSchema = new Schema({ //define how mongoose will write data to database;
     id    : ObjectId,
     title  : {type: String, required: true}, //can also add validation / restrictions

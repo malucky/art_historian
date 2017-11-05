@@ -5,9 +5,12 @@ angular.module('ArtHistorian')
     this.cardFlip = !this.cardFlip;
   };
   this.deleteCard = function(){
-    $http:({
+    $http({
       method: 'DELETE',
       url: '/cards',
+      params: {
+        id: this.card._id,
+      }
     }).then(function(response){})
   }
   // this.handleSubmit = function(){
